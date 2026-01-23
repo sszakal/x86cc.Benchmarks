@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
+        <PackageReference Include="Bogus" Version="35.6.1" />
+        <PackageReference Include="Testcontainers" Version="4.10.0" />
+        <PackageReference Include="StackExchange.Redis" Version="2.8.37" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\x86cc.Benchmarks.Common\x86cc.Benchmarks.Common.csproj" />
+    </ItemGroup>
+
+</Project>

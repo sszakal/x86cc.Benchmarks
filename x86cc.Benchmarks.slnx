@@ -1,0 +1,13 @@
+<Solution>
+  <Project Path="x86cc.Benchmarks.AspNetCore/x86cc.Benchmarks.AspNetCore.csproj" />
+  <Project Path="x86cc.Benchmarks.CachingSystems/x86cc.Benchmarks.CachingSystems.csproj" />
+  <Project Path="x86cc.Benchmarks.CLI/x86cc.Benchmarks.CLI.csproj" />
+  <Project Path="x86cc.Benchmarks.Common/x86cc.Benchmarks.Common.csproj" />
+  <Project Path="x86cc.Benchmarks.FakeDataGenerators/x86cc.Benchmarks.FakeDataGenerators.csproj" />
+  <Project Path="x86cc.Benchmarks.IoCs/x86cc.Benchmarks.IoCs.csproj" />
+  <Project Path="x86cc.Benchmarks.Mappers/x86cc.Benchmarks.Mappers.csproj" />
+  <Project Path="x86cc.Benchmarks.MessageBrokers/x86cc.Benchmarks.MessageBrokers.csproj" />
+  <Project Path="x86cc.Benchmarks.Serializers/x86cc.Benchmarks.Serializers.csproj" />
+  <Project Path="x86cc.Benchmarks.DBs/x86cc.Benchmarks.DBs.csproj" />
+  <Project Path="x86cc.Benchmarks.TestContainers/x86cc.Benchmarks.TestContainers.csproj" />
+</Solution>
