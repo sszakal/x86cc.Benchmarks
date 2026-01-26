@@ -14,28 +14,10 @@ using x86cc.Benchmarks.IoCs.Interception;
 
 namespace x86cc.Benchmarks.IoCs.Adapters
 {
-    public sealed class DryIocAdapter : ContainerAdapterBase
+    public sealed class DryIocContainerAdapter : ContainerAdapterBase
     {
         private IContainer container;
-
-        public override string PackageName => "DryIoc.dll";
-
-        public override string Name => "DryIoc";
-
-        public override string Url => "https://github.com/dadhi/DryIoc";
-
-        public override bool SupportsConditional => true;
-
-        public override bool SupportGeneric => true;
-
-        public override bool SupportsMultiple => true;
-
-        public override bool SupportsPropertyInjection => true;
-
-        public override bool SupportsInterception => true;
-
-        public override bool SupportAspNetCore => true;
-
+        
         public override object Resolve(Type type) => this.container.Resolve(type);
 
         public override void Dispose()

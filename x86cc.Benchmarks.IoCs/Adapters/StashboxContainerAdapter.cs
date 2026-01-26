@@ -17,24 +17,6 @@ namespace x86cc.Benchmarks.IoCs.Adapters
     {
         private IStashboxContainer container;
 
-        public override string PackageName => "Stashbox";
-
-        public override string Url => "https://github.com/z4kn4fein/stashbox";
-
-        public override bool SupportsInterception => true;
-
-        public override bool SupportsMultiple => true;
-
-        public override bool SupportsPropertyInjection => true;
-
-        public override bool SupportsChildContainer => true;
-
-        public override bool SupportsConditional => true;
-
-        public override bool SupportGeneric => true;
-
-        public override bool SupportAspNetCore => true;
-
         private readonly Type proxyType1;
         private readonly Type proxyType2;
         private readonly Type proxyType3;

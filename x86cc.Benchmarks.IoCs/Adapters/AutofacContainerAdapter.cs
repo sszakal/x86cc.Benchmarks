@@ -18,24 +18,6 @@ namespace x86cc.Benchmarks.IoCs.Adapters
     {
         private IContainer container;
 
-        public override string PackageName => "Autofac";
-
-        public override string Url => "https://github.com/autofac/Autofac";
-
-        public override bool SupportsInterception => true;
-
-        public override bool SupportGeneric => true;
-
-        public override bool SupportsMultiple => true;
-
-        public override bool SupportsPropertyInjection => true;
-
-        public override bool SupportsConditional => true;
-
-        public override bool SupportsChildContainer => true;
-
-        public override bool SupportAspNetCore => true;
-
         public override IChildContainerAdapter CreateChildContainerAdapter() => new AutofacChildContainerAdapter(this.container);
 
         public override object Resolve(Type type) => this.container.Resolve(type);

@@ -1,65 +1,12 @@
-﻿using System.Xml.Linq;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using x86cc.Benchmarks.IoCs.Classes.AspNet;
 
 namespace x86cc.Benchmarks.IoCs.Adapters
 {
     public abstract class ContainerAdapterBase : IContainerAdapter
     {
-        public virtual string Version
-        {
-            get
-            {
-                return XDocument
-                   .Load("../../IocPerformance.csproj")
-                   .Root
-                   .Descendants("PackageReference")
-                   .First(e => e.Attribute("Include").Value == this.PackageName)
-                   .Attribute("Version").Value;
-            }
-        }
-
-        public virtual string Name => this.PackageName;
-
-        public abstract string PackageName
-        {
-            get;
-        }
-
-        public abstract string Url
-        {
-            get;
-        }
-
-        public virtual bool SupportsInterception => false;
-
-        public virtual bool SupportsPropertyInjection => false;
-
-        public virtual bool SupportsChildContainer => false;
-
-        public virtual bool SupportAspNetCore => false;
-
-        public virtual bool SupportsConditional => false;
-
-        public virtual bool SupportGeneric => false;
-
-        public virtual bool SupportsMultiple => false;
-
-        public virtual bool SupportsTransient => true;
-
-        public virtual bool SupportsCombined => true;
-
-        public virtual bool SupportsBasic => true;
-
-        public virtual bool SupportsPrepareAndRegister => true;
-
         public abstract void PrepareBasic();
-
-        public override string ToString()
-        {
-            return this.Name;
-        }
-
+        
         public virtual void Prepare()
         {
             this.PrepareBasic(); // by default any prepare should at least support basic one

@@ -13,22 +13,6 @@ namespace x86cc.Benchmarks.IoCs.Adapters
     {
         private Container container;
 
-        public override string PackageName => "Lamar";
-
-        public override string Url => "https://jasperfx.github.io/lamar/";
-
-        public override bool SupportsInterception => false;
-
-        public override bool SupportGeneric => true;
-
-        public override bool SupportsMultiple => true;
-
-        public override bool SupportsPropertyInjection => true;
-
-        public override bool SupportsChildContainer => false;
-
-        public override bool SupportAspNetCore => true;
-
         public override object Resolve(Type type) => this.container.GetService(type);
 
         public override void Dispose()

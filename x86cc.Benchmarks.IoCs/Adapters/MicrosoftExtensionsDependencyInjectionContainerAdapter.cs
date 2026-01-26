@@ -12,19 +12,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
         private IServiceCollection serviceCollection;
 
         private IServiceProvider serviceProvider;
-
-        public override string PackageName => "Microsoft.Extensions.DependencyInjection";
-
-        public override string Name => "Microsoft Extensions DependencyInjection";
-
-        public override string Url => "https://github.com/aspnet/Extensions";
-
-        public override bool SupportGeneric => true;
-
-        public override bool SupportsMultiple => true;
-
-        public override bool SupportAspNetCore => true;
-
+        
         public override object Resolve(Type type) => this.serviceProvider.GetService(type);
 
         public override void Dispose()

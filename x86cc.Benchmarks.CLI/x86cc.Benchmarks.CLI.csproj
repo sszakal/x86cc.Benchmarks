@@ -15,6 +15,7 @@
     <ItemGroup>
       <ProjectReference Include="..\x86cc.Benchmarks.CachingSystems\x86cc.Benchmarks.CachingSystems.csproj" />
       <ProjectReference Include="..\x86cc.Benchmarks.FakeDataGenerators\x86cc.Benchmarks.FakeDataGenerators.csproj" />
+      <ProjectReference Include="..\x86cc.Benchmarks.IoCs\x86cc.Benchmarks.IoCs.csproj" />
       <ProjectReference Include="..\x86cc.Benchmarks.Mappers\x86cc.Benchmarks.Mappers.csproj" />
       <ProjectReference Include="..\x86cc.Benchmarks.MessageBrokers\x86cc.Benchmarks.MessageBrokers.csproj" />
       <ProjectReference Include="..\x86cc.Benchmarks.Serializers\x86cc.Benchmarks.Serializers.csproj" />

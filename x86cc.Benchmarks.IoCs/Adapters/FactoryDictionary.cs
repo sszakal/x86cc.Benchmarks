@@ -1,4 +1,4 @@
-﻿namespace x86cc.Benchmarks.IoCs
+﻿namespace x86cc.Benchmarks.IoCs.Adapters
 {
     /*
          Based on the implementation of Adam Horvath (CustomDictionary)

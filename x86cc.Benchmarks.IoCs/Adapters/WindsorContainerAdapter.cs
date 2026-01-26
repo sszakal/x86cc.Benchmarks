@@ -16,22 +16,6 @@ namespace x86cc.Benchmarks.IoCs.Adapters
     {
         private WindsorContainer container;
 
-        public override string Name => "Windsor";
-
-        public override string PackageName => "Castle.Windsor";
-
-        public override string Url => "http://castleproject.org";
-
-        public override bool SupportsPropertyInjection => true;
-
-        public override bool SupportGeneric => true;
-
-        public override bool SupportsMultiple => true;
-
-        public override bool SupportsInterception => true;
-
-        public override bool SupportsChildContainer => true;
-
         public override object Resolve(Type type) => this.container.Resolve(type);
 
         public override void Dispose()

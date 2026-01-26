@@ -13,26 +13,6 @@ namespace x86cc.Benchmarks.IoCs.Adapters
     {
         private readonly IocPerformanceDictionary<Type, Func<object>> container = new IocPerformanceDictionary<Type, Func<object>>();
 
-        public override string PackageName => "No";
-
-        public override string Url => string.Empty;
-
-        public override string Version => string.Empty;
-
-        public override bool SupportsConditional => true;
-
-        public override bool SupportGeneric => true;
-
-        public override bool SupportsMultiple => true;
-
-        public override bool SupportsPropertyInjection => true;
-
-        public override bool SupportsInterception => true;
-
-        public override bool SupportsChildContainer => true;
-
-        public override bool SupportsBasic => true;
-
         public override object Resolve(Type type) => this.container[type]();
 
         public override void Dispose()

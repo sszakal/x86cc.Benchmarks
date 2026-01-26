@@ -4,8 +4,8 @@ using x86cc.Benchmarks.FakeDataGenerators;
 using x86cc.Benchmarks.Mappers;
 using x86cc.Benchmarks.MessageBrokers;
 using x86cc.Benchmarks.Serializers;
-using x86cc.Benchmarks.DBs;
 using x86cc.Benchmarks.DBs.DocumentDB;
+using x86cc.Benchmarks.IoCs;
 
 var summary = BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly)
      .With(typeof(MessageBrokerBenchmark).Assembly)
@@ -14,6 +14,7 @@ var summary = BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly)
      .With(typeof(MapperBenchmark).Assembly)
      .With(typeof(DocumentDbBenchmark).Assembly)
      .With(typeof(CacheBenchmark).Assembly)
+     .With(typeof(IoCBenchmark).Assembly)
      .Run(args);
 Console.WriteLine(summary.ToString());
  // var systemJsonBenchmarks = new SqlServerBenchmark();

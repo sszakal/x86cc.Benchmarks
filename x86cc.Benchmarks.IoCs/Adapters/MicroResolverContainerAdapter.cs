@@ -7,19 +7,9 @@ using x86cc.Benchmarks.IoCs.Classes.Standard;
 
 namespace x86cc.Benchmarks.IoCs.Adapters
 {
-    public sealed class MicroResolverAdapter : ContainerAdapterBase
+    public sealed class MicroResolverContainerAdapter : ContainerAdapterBase
     {
         private ObjectResolver resolver;
-
-        public override string PackageName => "MicroResolver";
-
-        public override string Url => "https://github.com/neuecc/MicroResolver";
-
-        public override bool SupportsBasic => true;
-
-        public override bool SupportsMultiple => true;
-
-        public override bool SupportsPropertyInjection => true;
 
         public override object Resolve(Type type)
         {

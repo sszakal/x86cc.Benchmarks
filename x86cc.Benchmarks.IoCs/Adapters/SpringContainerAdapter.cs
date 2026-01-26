@@ -6,16 +6,6 @@ namespace x86cc.Benchmarks.IoCs.Adapters
     {
         private IApplicationContext container;
 
-        public override string Name => "Spring.NET";
-
-        public override string PackageName => "Spring.Core";
-
-        public override bool SupportsInterception => true;
-
-        public override string Url => "http://www.springframework.net/";
-
-        public override bool SupportsPropertyInjection => true;
-
         public override object Resolve(Type type) => this.container.GetObject(type.FullName);
 
         public override void Dispose()
