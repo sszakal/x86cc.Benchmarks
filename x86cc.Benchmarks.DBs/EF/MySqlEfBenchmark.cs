@@ -1,18 +1,19 @@
 using DotNet.Testcontainers.Containers;
 using Microsoft.EntityFrameworkCore;
-using Testcontainers.PostgreSql;
+using Testcontainers.MySql;
 
 namespace x86cc.Benchmarks.DBs.EF;
 
-public class PostgresEfBenchmarkCommon : EFBenchmarkCommon
+public class MySqlEfBenchmark : EFBenchmarkCommon
 {
     private const string DatabaseName = "benchmarks";
     private const string Username = "bench";
     private const string Password = "bench_pw";
+    private static readonly Version ServerVersion = new(8, 0, 34);
 
     protected override IContainer BuildContainer()
     {
-        var builder = new PostgreSqlBuilder("postgres:18")
+        var builder = new MySqlBuilder("mysql:9.6.0")
             .WithDatabase(DatabaseName)
             .WithUsername(Username)
             .WithPassword(Password);
@@ -28,15 +29,14 @@ public class PostgresEfBenchmarkCommon : EFBenchmarkCommon
 
     protected override string GetConnectionString(IContainer container)
     {
-        return ((PostgreSqlContainer)container).GetConnectionString();
+        return ((MySqlContainer)container).GetConnectionString();
     }
 
     protected override DbContextOptions<CustomerOrderDbContext> CreateOptions(string connectionString)
     {
         return new DbContextOptionsBuilder<CustomerOrderDbContext>()
-            .UseNpgsql(connectionString)
+            .UseMySQL(connectionString)
             .EnableDetailedErrors(false)
             .Options;
     }
-
 }

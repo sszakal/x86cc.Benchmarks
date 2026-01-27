@@ -8,7 +8,7 @@ using Testcontainers.MsSql;
 
 namespace x86cc.Benchmarks.DBs.EF;
 
-public class SqlServerEfBenchmarkCommon : EFBenchmarkCommon
+public class SqlServerEfBenchmark : EFBenchmarkCommon
 {
     private const string DatabaseName = "Benchmarks";
     private const string Username = "sa";

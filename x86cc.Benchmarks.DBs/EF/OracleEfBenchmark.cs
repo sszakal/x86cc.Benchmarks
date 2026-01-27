@@ -4,7 +4,7 @@ using Testcontainers.Oracle;
 
 namespace x86cc.Benchmarks.DBs.EF;
 
-public class OracleEfBenchmarkCommon : EFBenchmarkCommon
+public class OracleEfBenchmark : EFBenchmarkCommon
 {
     private const string DatabaseName = "FREEPDB1";
     private const string Username = "bench";

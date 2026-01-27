@@ -33,31 +33,31 @@ public abstract class EFBenchmark : IAsyncDisposable
         await ResetDatabaseAsync().ConfigureAwait(false);
 
         _faker = BenchmarkBogusConfig.CreateCustomerOrderRootFaker(seed: 42);
-        TestData = _faker.Generate(TestDataCount).ToArray();
-        SeedData = _faker.Generate(TestDataCount).ToArray();
+        TestData = _faker.Generate(TestDataCount * 2).ToArray();
+        SeedData = _faker.Generate(TestDataCount * 2).ToArray();
         await CreateBulkAsync(SeedData);
     }
 
-    [IterationSetup(Targets = [nameof(Create), nameof(Read), nameof(Update), nameof(Delete),])]
+    [IterationSetup(Targets = [nameof(Create), nameof(Read), nameof(Update), nameof(Delete)])]
     public void Simple_CRUD_Setup()
     {
         _iterationIndex++;
     }
     
-    //[Benchmark]
+    [Benchmark]
     [WarmupCount(100)]
     [IterationCount(1000)]
     public async Task Create()
     {
-        await ExecuteCreateAsync(TestData[_iterationIndex-1]).ConfigureAwait(false);
+        await ExecuteCreateAsync(TestData[_iterationIndex]).ConfigureAwait(false);
     }
     
-    //[Benchmark]
+    [Benchmark]
     [WarmupCount(100)]
     [IterationCount(1000)]
     public Task Read()
     {
-        return ExecuteLoadByIdAsync(SeedData[_iterationIndex-1].Id);
+        return ExecuteLoadByIdAsync(SeedData[_iterationIndex].Id);
     }
 
     [Benchmark]
@@ -65,18 +65,17 @@ public abstract class EFBenchmark : IAsyncDisposable
     [IterationCount(1000)]
     public Task Update()
     {
-        var index = _iterationIndex % TestDataCount;
-        var updateObject = TestData[_iterationIndex-1];
-        updateObject.Id = SeedData[_iterationIndex-1].Id;
-        return ExecuteUpdateAsync(updateObject);
+        var order = SeedData[_iterationIndex];
+        (order.Id, SeedData[_iterationIndex].Id) = (SeedData[SeedData.Length - 1 - _iterationIndex].Id, order.Id);
+        return ExecuteUpdateAsync(order);
     }
     
-    //[Benchmark]
+    [Benchmark]
     [WarmupCount(100)]
     [IterationCount(1000)]
     public Task Delete()
     {
-        return DeleteOneAsync(SeedData[_iterationIndex-1]);
+        return DeleteOneAsync(SeedData[_iterationIndex]);
     }
     
     [IterationSetup(Targets = [nameof(Create_Bulk)])]
@@ -85,7 +84,7 @@ public abstract class EFBenchmark : IAsyncDisposable
         TestData = _faker!.Generate(TestDataCount).ToArray();
     }    
 
-    //[Benchmark]
+    [Benchmark]
     [WarmupCount(10)]
     [IterationCount(100)]
     public Task Create_Bulk()
@@ -93,7 +92,7 @@ public abstract class EFBenchmark : IAsyncDisposable
         return CreateBulkAsync(TestData);
     }
     
-    //[Benchmark]
+    [Benchmark]
     [WarmupCount(10)]
     [IterationCount(100)]
     public Task Read_Search()
