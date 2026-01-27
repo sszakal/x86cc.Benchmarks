@@ -7,6 +7,18 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/Dotnet.gitignore
 
+# IDEs
+.vs/
+.idea/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+*.rsuser
+*.sln.iml
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -22,6 +34,9 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+
+# BenchmarkDotNet
+BenchmarkDotNet.Artifacts/
 
 # .NET Core
 project.lock.json
@@ -40,6 +55,7 @@ ScaffoldingReadMe.txt
 ~$*
 *~
 CodeCoverage/
+coverage.*
 
 # MSBuild Binary and Structured Log
 *.binlog

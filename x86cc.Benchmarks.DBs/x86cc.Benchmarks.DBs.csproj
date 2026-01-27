@@ -40,9 +40,4 @@
       <ProjectReference Include="..\x86cc.Benchmarks.Common\x86cc.Benchmarks.Common.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="DocumentDB\" />
-      <Folder Include="EF\" />
-    </ItemGroup>
-
 </Project>

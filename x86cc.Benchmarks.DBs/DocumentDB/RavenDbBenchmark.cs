@@ -4,6 +4,7 @@ using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using Testcontainers.RavenDb;
 
 namespace x86cc.Benchmarks.DBs.DocumentDB;
@@ -12,10 +13,17 @@ public class RavenDbBenchmark : DocumentDbBenchmark
 {
     private const string DatabaseName = "benchmarks";
     private IDocumentStore? _store;
+    
+    private static string GetImageTag()
+    {
+        return RuntimeInformation.ProcessArchitecture == Architecture.Arm64
+            ? "ravendb/ravendb:7.1-ubuntu-arm64v8-latest"
+            : "ravendb/ravendb:7.1-ubuntu-latest";
+    }
 
     protected override IContainer BuildContainer()
     {
-        var builder = new RavenDbBuilder("ravendb/ravendb:7.1-ubuntu-arm64v8-latest")
+        var builder = new RavenDbBuilder(GetImageTag())
             .WithEnvironment("RAVEN_UnsecuredAccessAllowed", "PublicNetwork");
 
         var platform = ResolveDockerPlatform();

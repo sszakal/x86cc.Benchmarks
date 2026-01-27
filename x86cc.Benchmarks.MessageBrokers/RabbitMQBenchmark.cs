@@ -24,7 +24,7 @@ public class RabbitMQBenchmark: MessageBrokerBenchmark, IAsyncDisposable
 
         var channelOpts = new CreateChannelOptions(
             publisherConfirmationsEnabled: PublisherConfirmationsEnabled,
-            publisherConfirmationTrackingEnabled: publisherConfirmationTrackingEnabled
+            publisherConfirmationTrackingEnabled: PublisherConfirmationTrackingEnabled
         );
 
         (_connection, _channel) = await SetupConnection(channelOpts, _container.GetConnectionString());

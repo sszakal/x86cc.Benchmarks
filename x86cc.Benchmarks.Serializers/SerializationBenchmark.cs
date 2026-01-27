@@ -5,7 +5,7 @@ namespace x86cc.Benchmarks.Serializers;
 
 [MemoryDiagnoser]
 [BenchmarkCategory("Serialization")]
-[SimpleJob(RuntimeMoniker.Net10_0, warmupCount: 2, iterationCount: 20)]
+[SimpleJob(RuntimeMoniker.Net10_0, warmupCount: 5, iterationCount: 40)]
 public abstract class SerializationBenchmark
 {
     [Params(10000)]

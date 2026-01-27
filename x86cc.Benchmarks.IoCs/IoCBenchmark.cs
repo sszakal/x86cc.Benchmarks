@@ -36,18 +36,16 @@ public abstract class IoCBenchmark : IDisposable
 
     protected virtual bool SupportsMultiple => false;
 
-    protected virtual bool SupportsTransient => true;
 
-    protected virtual bool SupportsCombined => true;
-
-    protected virtual bool SupportsBasic => true;
-
+    private int NumberOfIteration = 10000;
+    
     [GlobalSetup]
-    public async Task GlobalSetup()
+    public Task GlobalSetup()
     {
         container = BuildContainer();
         this.ZeroCounters();
         container.Prepare();
+        return Task.CompletedTask;
     }
 
     protected abstract IContainerAdapter BuildContainer();
@@ -57,7 +55,7 @@ public abstract class IoCBenchmark : IDisposable
     [IterationSetup]
     public void LoopCount()
     {
-        IterationCount++;
+        IterationCount += NumberOfIteration;
     }
 
     [IterationCleanup(Targets = [nameof(Singleton)])]
@@ -74,9 +72,12 @@ public abstract class IoCBenchmark : IDisposable
     [IterationCount(500)]
     public void Singleton()
     {
-        var singleton1 = (ISingleton1)container.Resolve(typeof(ISingleton1));
-        var singleton2 = (ISingleton2)container.Resolve(typeof(ISingleton2));
-        var singleton3 = (ISingleton3)container.Resolve(typeof(ISingleton3));
+        for (int i = 0; i < NumberOfIteration; i++)
+        {
+            var singleton1 = (ISingleton1)container.Resolve(typeof(ISingleton1));
+            var singleton2 = (ISingleton2)container.Resolve(typeof(ISingleton2));
+            var singleton3 = (ISingleton3)container.Resolve(typeof(ISingleton3));
+        }
     }
     
     [IterationCleanup(Targets = [nameof(Transient)])]
@@ -95,10 +96,12 @@ public abstract class IoCBenchmark : IDisposable
     [IterationCount(500)]
     public void Transient()
     {
-        if (!SupportsTransient) throw new Exception("NA");
-        var transient1 = (ITransient1)container.Resolve(typeof(ITransient1));
-        var transient2 = (ITransient2)container.Resolve(typeof(ITransient2));
-        var transient3 = (ITransient3)container.Resolve(typeof(ITransient3));
+        for (int i = 0; i < NumberOfIteration; i++)
+        {
+            var transient1 = (ITransient1)container.Resolve(typeof(ITransient1));
+            var transient2 = (ITransient2)container.Resolve(typeof(ITransient2));
+            var transient3 = (ITransient3)container.Resolve(typeof(ITransient3));
+        }
     } 
     
     [IterationCleanup(Targets = [nameof(Combined)])]
@@ -129,10 +132,12 @@ public abstract class IoCBenchmark : IDisposable
     [IterationCount(500)]
     public void Combined()
     {
-        if (!SupportsCombined) throw new Exception("NA");
-        var combined1 = (ICombined1)container.Resolve(typeof(ICombined1));
-        var combined2 = (ICombined2)container.Resolve(typeof(ICombined2));
-        var combined3 = (ICombined3)container.Resolve(typeof(ICombined3));
+        for (int i = 0; i < NumberOfIteration; i++)
+        {
+            var combined1 = (ICombined1)container.Resolve(typeof(ICombined1));
+            var combined2 = (ICombined2)container.Resolve(typeof(ICombined2));
+            var combined3 = (ICombined3)container.Resolve(typeof(ICombined3));
+        }
     }
     
     [IterationCleanup(Targets = [nameof(Complex)])]
@@ -151,9 +156,12 @@ public abstract class IoCBenchmark : IDisposable
     [IterationCount(500)]
     public void Complex()
     {
-        var complex1 = (IComplex1)container.Resolve(typeof(IComplex1));
-        var complex2 = (IComplex2)container.Resolve(typeof(IComplex2));
-        var complex3 = (IComplex3)container.Resolve(typeof(IComplex3));
+        for (int i = 0; i < NumberOfIteration; i++)
+        {
+            var complex1 = (IComplex1)container.Resolve(typeof(IComplex1));
+            var complex2 = (IComplex2)container.Resolve(typeof(IComplex2));
+            var complex3 = (IComplex3)container.Resolve(typeof(IComplex3));
+        }
     }
     
     [IterationCleanup(Targets = [nameof(Property)])]
@@ -173,10 +181,13 @@ public abstract class IoCBenchmark : IDisposable
     public void Property()
     {
         if (!SupportsPropertyInjection) throw new Exception("NA");
-        
-        var complex1 = (IComplexPropertyObject1)container.Resolve(typeof(IComplexPropertyObject1));
-        var complex2 = (IComplexPropertyObject2)container.Resolve(typeof(IComplexPropertyObject2));
-        var complex3 = (IComplexPropertyObject3)container.Resolve(typeof(IComplexPropertyObject3));
+
+        for (int i = 0; i < NumberOfIteration; i++)
+        {
+            var complex1 = (IComplexPropertyObject1)container.Resolve(typeof(IComplexPropertyObject1));
+            var complex2 = (IComplexPropertyObject2)container.Resolve(typeof(IComplexPropertyObject2));
+            var complex3 = (IComplexPropertyObject3)container.Resolve(typeof(IComplexPropertyObject3));
+        }
     } 
     
     [IterationCleanup(Targets = [nameof(Generics)])]
@@ -196,10 +207,13 @@ public abstract class IoCBenchmark : IDisposable
     public void Generics()
     {
         if (!SupportGeneric) throw new Exception("NA");
-        
-        var generic1 = (ImportGeneric<int>)container.Resolve(typeof(ImportGeneric<int>));
-        var generic2 = (ImportGeneric<float>)container.Resolve(typeof(ImportGeneric<float>));
-        var generic3 = (ImportGeneric<object>)container.Resolve(typeof(ImportGeneric<object>));
+
+        for (int i = 0; i < NumberOfIteration; i++)
+        {
+            var generic1 = (ImportGeneric<int>)container.Resolve(typeof(ImportGeneric<int>));
+            var generic2 = (ImportGeneric<float>)container.Resolve(typeof(ImportGeneric<float>));
+            var generic3 = (ImportGeneric<object>)container.Resolve(typeof(ImportGeneric<object>));
+        }
     } 
     
     
@@ -220,10 +234,13 @@ public abstract class IoCBenchmark : IDisposable
     public void IEnumerable()
     {
         if (!SupportsMultiple) throw new Exception("NA");
-        
-        var importMultiple1 = (ImportMultiple1)container.Resolve(typeof(ImportMultiple1));
-        var importMultiple2 = (ImportMultiple2)container.Resolve(typeof(ImportMultiple2));
-        var importMultiple3 = (ImportMultiple3)container.Resolve(typeof(ImportMultiple3));
+
+        for (int i = 0; i < NumberOfIteration; i++)
+        {
+            var importMultiple1 = (ImportMultiple1)container.Resolve(typeof(ImportMultiple1));
+            var importMultiple2 = (ImportMultiple2)container.Resolve(typeof(ImportMultiple2));
+            var importMultiple3 = (ImportMultiple3)container.Resolve(typeof(ImportMultiple3));
+        }
     }
     
     [IterationCleanup(Targets = [nameof(Conditional)])]
@@ -243,10 +260,13 @@ public abstract class IoCBenchmark : IDisposable
     public void Conditional()
     {
         if (!SupportsConditional) throw new Exception("NA");
-        
-        var importConditionObject1 = (ImportConditionObject1)container.Resolve(typeof(ImportConditionObject1));
-        var importConditionObject2 = (ImportConditionObject2)container.Resolve(typeof(ImportConditionObject2));
-        var importConditionObject3 = (ImportConditionObject3)container.Resolve(typeof(ImportConditionObject3));
+
+        for (int i = 0; i < NumberOfIteration; i++)
+        {
+            var importConditionObject1 = (ImportConditionObject1)container.Resolve(typeof(ImportConditionObject1));
+            var importConditionObject2 = (ImportConditionObject2)container.Resolve(typeof(ImportConditionObject2));
+            var importConditionObject3 = (ImportConditionObject3)container.Resolve(typeof(ImportConditionObject3));
+        }
     }
     
     [IterationCleanup(Targets = [nameof(ChildContainer)])]
@@ -266,26 +286,29 @@ public abstract class IoCBenchmark : IDisposable
     public void ChildContainer()
     {
         if (!SupportsChildContainer) throw new Exception("NA");
-        
-        using (var childContainer = container.CreateChildContainerAdapter())
+
+        for (int i = 0; i < NumberOfIteration; i++)
         {
-            childContainer.Prepare();
+            using (var childContainer = container.CreateChildContainerAdapter())
+            {
+                childContainer.Prepare();
 
-            var scopedCombined = (ICombined1)childContainer.Resolve(typeof(ICombined1));
-        }
+                var scopedCombined = (ICombined1)childContainer.Resolve(typeof(ICombined1));
+            }
 
-        using (var childContainer = container.CreateChildContainerAdapter())
-        {
-            childContainer.Prepare();
+            using (var childContainer = container.CreateChildContainerAdapter())
+            {
+                childContainer.Prepare();
 
-            var scopedCombined = (ICombined2)childContainer.Resolve(typeof(ICombined2));
-        }
+                var scopedCombined = (ICombined2)childContainer.Resolve(typeof(ICombined2));
+            }
 
-        using (var childContainer = container.CreateChildContainerAdapter())
-        {
-            childContainer.Prepare();
+            using (var childContainer = container.CreateChildContainerAdapter())
+            {
+                childContainer.Prepare();
 
-            var scopedCombined = (ICombined3)childContainer.Resolve(typeof(ICombined3));
+                var scopedCombined = (ICombined3)childContainer.Resolve(typeof(ICombined3));
+            }
         }
     }
     
@@ -335,28 +358,31 @@ public abstract class IoCBenchmark : IDisposable
     public void AspNetCore()
     {
         if (!SupportAspNetCore) throw new Exception("NA");
-        
-        var factory = (IServiceScopeFactory)container.Resolve(typeof(IServiceScopeFactory));
 
-        using (var scope = factory.CreateScope())
+        for (int i = 0; i < NumberOfIteration; i++)
         {
-            var controller = scope.ServiceProvider.GetService(typeof(TestController1));
+            var factory = (IServiceScopeFactory)container.Resolve(typeof(IServiceScopeFactory));
+
+            using (var scope = factory.CreateScope())
+            {
+                var controller = scope.ServiceProvider.GetService(typeof(TestController1));
+            }
+
+            factory = (IServiceScopeFactory)container.Resolve(typeof(IServiceScopeFactory));
+
+            using (var scope = factory.CreateScope())
+            {
+                var controller = scope.ServiceProvider.GetService(typeof(TestController2));
+            }
+
+            factory = (IServiceScopeFactory)container.Resolve(typeof(IServiceScopeFactory));
+
+            using (var scope = factory.CreateScope())
+            {
+                var controller = scope.ServiceProvider.GetService(typeof(TestController3));
+            }
         }
-
-        factory = (IServiceScopeFactory)container.Resolve(typeof(IServiceScopeFactory));
-
-        using (var scope = factory.CreateScope())
-        {
-            var controller = scope.ServiceProvider.GetService(typeof(TestController2));
-        }
-
-        factory = (IServiceScopeFactory)container.Resolve(typeof(IServiceScopeFactory));
-
-        using (var scope = factory.CreateScope())
-        {
-            var controller = scope.ServiceProvider.GetService(typeof(TestController3));
-        }
-    }    
+    }
     
     [IterationCleanup(Targets = [nameof(InterceptionWithProxy)])]
     public void InterceptionWithProxyValidation()
@@ -375,14 +401,17 @@ public abstract class IoCBenchmark : IDisposable
     public void InterceptionWithProxy()
     {
         if (!SupportsInterception) throw new Exception("NA");
-        
-        var result1 = (ICalculator1)container.Resolve(typeof(ICalculator1));
-        var result2 = (ICalculator2)container.Resolve(typeof(ICalculator2));
-        var result3 = (ICalculator3)container.Resolve(typeof(ICalculator3));
 
-        result1.Add(5, 10);
-        result2.Add(5, 10);
-        result3.Add(5, 10);
+        for (int i = 0; i < NumberOfIteration; i++)
+        {
+            var result1 = (ICalculator1)container.Resolve(typeof(ICalculator1));
+            var result2 = (ICalculator2)container.Resolve(typeof(ICalculator2));
+            var result3 = (ICalculator3)container.Resolve(typeof(ICalculator3));
+
+            result1.Add(5, 10);
+            result2.Add(5, 10);
+            result3.Add(5, 10);
+        }
     }    
     
     [IterationCleanup(Targets = [nameof(PrepareAndRegister)])]
@@ -397,9 +426,12 @@ public abstract class IoCBenchmark : IDisposable
     public void PrepareAndRegister()
     {
         if (!SupportsInterception) throw new Exception("NA");
-        
-        container.PrepareBasic();
-        container.Dispose();
+
+        for (int i = 0; i < 1000; i++)
+        {
+            container.PrepareBasic();
+            container.Dispose();
+        }
     }   
     
     [IterationCleanup(Targets = [nameof(PrepareAndRegisterAndSimpleResolve)])]
@@ -416,17 +448,21 @@ public abstract class IoCBenchmark : IDisposable
     [IterationCount(500)]
     public void PrepareAndRegisterAndSimpleResolve()
     {
-        container.PrepareBasic();
-        container.Resolve(typeof(IDummyOne));
-        container.Resolve(typeof(ISingleton1));
-        container.Dispose();
+        for (int i = 0; i < 1000; i++)
+        {
+            container.PrepareBasic();
+            container.Resolve(typeof(IDummyOne));
+            container.Resolve(typeof(ISingleton1));
+            container.Dispose();
+        }
     }
     
     [GlobalCleanup]
-    public async Task GlobalCleanup()
+    public Task GlobalCleanup()
     {
         container?.Dispose();
-        container = null;
+        container = null!;
+        return Task.CompletedTask;
     }
 
     private void ZeroCounters()

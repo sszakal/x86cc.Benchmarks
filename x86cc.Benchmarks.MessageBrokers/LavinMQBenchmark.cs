@@ -24,19 +24,20 @@ public class LavinMQBenchmark: MessageBrokerBenchmark, IAsyncDisposable
 
         var channelOpts = new CreateChannelOptions(
             publisherConfirmationsEnabled: PublisherConfirmationsEnabled,
-            publisherConfirmationTrackingEnabled: publisherConfirmationTrackingEnabled
+            publisherConfirmationTrackingEnabled: PublisherConfirmationTrackingEnabled
         );
 
         (_connection, _channel) = await SetupConnection(channelOpts, _container.GetConnectionString());
         
         _consumer = new AsyncEventingBasicConsumer(_channel);
-        _consumer.ReceivedAsync += async (sender, deliveryEventArgs) =>
+        _consumer.ReceivedAsync += (sender, deliveryEventArgs) =>
         {
-            if(_tcs == null) return;
+            if(_tcs == null) return Task.CompletedTask;
             var body = deliveryEventArgs.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
             var receiveTime = Stopwatch.GetTimestamp();
             _tcs.TrySetResult(receiveTime);
+            return Task.CompletedTask;
         };
         
         string consumerTag = await _channel.BasicConsumeAsync(BenchmarkQueue, true, _consumer);

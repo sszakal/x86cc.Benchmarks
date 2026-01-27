@@ -15,8 +15,6 @@ public class NoContainerBenchmark: IoCBenchmark
     protected override bool SupportsInterception => true;
 
     protected override bool SupportsChildContainer => true;
-
-    protected override bool SupportsBasic => true;
     
     protected override IContainerAdapter BuildContainer()
     {

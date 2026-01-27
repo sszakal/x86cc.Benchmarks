@@ -28,7 +28,7 @@ public abstract class MessageBrokerBenchmark
     public bool PublisherConfirmationsEnabled { get; set; }    
     
     [Params(true)]
-    public bool publisherConfirmationTrackingEnabled { get; set; }
+    public bool PublisherConfirmationTrackingEnabled { get; set; }
 
     [GlobalSetup]
     public async Task GlobalSetup()
@@ -67,16 +67,12 @@ public abstract class MessageBrokerBenchmark
     [Benchmark]
     public async Task MessageLatency()
     {
-        _tcs = new TaskCompletionSource<long>();
-        await Publish(_messageBody);
-        await _tcs.Task.ConfigureAwait(false);
-        
-        // _tcs = new TaskCompletionSource<long>();
-        // var sendTimestamp = Stopwatch.GetTimestamp();
-        // await Publish(_messageBody);
-        // var receiveTime = await _tcs.Task.ConfigureAwait(false);
-        // var latencyTicks = receiveTime - sendTimestamp;
-        // return (latencyTicks * 1000.0) / Stopwatch.Frequency;
+        for (int i = 0; i < MessageCount; i++)
+        {
+            _tcs = new TaskCompletionSource<long>();
+            await Publish(_messageBody);
+            await _tcs.Task.ConfigureAwait(false);
+        }
     }
     
     static async Task MaybeAwaitPublishes(List<ValueTask> publishTasks, int batchSize)
