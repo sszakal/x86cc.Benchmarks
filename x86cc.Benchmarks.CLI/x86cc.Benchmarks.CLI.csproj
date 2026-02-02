@@ -13,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\x86cc.Benchmarks.AspNetCore\x86cc.Benchmarks.AspNetCore.csproj" />
       <ProjectReference Include="..\x86cc.Benchmarks.CachingSystems\x86cc.Benchmarks.CachingSystems.csproj" />
       <ProjectReference Include="..\x86cc.Benchmarks.FakeDataGenerators\x86cc.Benchmarks.FakeDataGenerators.csproj" />
       <ProjectReference Include="..\x86cc.Benchmarks.IoCs\x86cc.Benchmarks.IoCs.csproj" />

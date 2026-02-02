@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
+using x86cc.Benchmarks.AspNetCore.Benchmarks;
 using x86cc.Benchmarks.CachingSystems;
 using x86cc.Benchmarks.FakeDataGenerators;
 using x86cc.Benchmarks.Mappers;
@@ -15,6 +16,7 @@ var summary = BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly)
      .With(typeof(DocumentDbBenchmark).Assembly)
      .With(typeof(CacheBenchmark).Assembly)
      .With(typeof(IoCBenchmark).Assembly)
+     .With(typeof(AspNetCoreE2EBenchmark).Assembly)
      .Run(args);
 Console.WriteLine(summary.ToString());
  // var systemJsonBenchmarks = new SqlServerBenchmark();

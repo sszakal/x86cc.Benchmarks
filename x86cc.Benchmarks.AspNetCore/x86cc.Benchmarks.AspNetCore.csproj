@@ -4,6 +4,40 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
     </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
+        <PackageReference Include="DryIoc.dll" Version="5.4.3" />
+        <PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="6.2.0" />
+        <PackageReference Include="FastEndpoints" Version="7.2.0" />
+        <PackageReference Include="Lamar" Version="15.0.1" />
+        <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="15.0.1" />
+        <PackageReference Include="Mapster" Version="7.4.0" />
+        <PackageReference Include="Marten" Version="8.18.2" />
+        <PackageReference Include="MediatR" Version="14.0.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.2" />
+        <PackageReference Include="MongoDB.Driver" Version="3.6.0" />
+        <PackageReference Include="Npgsql" Version="10.0.1" />
+        <PackageReference Include="Riok.Mapperly" Version="4.3.1" />
+        <PackageReference Include="StackExchange.Redis" Version="2.10.1" />
+        <PackageReference Include="System.Drawing.Common" Version="10.0.2" />
+        <PackageReference Include="System.Security.Permissions" Version="10.0.2" />
+        <PackageReference Include="System.Windows.Extensions" Version="10.0.2" />
+        <PackageReference Include="Testcontainers" Version="4.10.0" />
+        <PackageReference Include="Testcontainers.MongoDb" Version="4.10.0" />
+        <PackageReference Include="Testcontainers.PostgreSql" Version="4.10.0" />
+        <PackageReference Include="WolverineFx" Version="5.12.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\x86cc.Benchmarks.Common\x86cc.Benchmarks.Common.csproj" />
+    </ItemGroup>
 
 </Project>
