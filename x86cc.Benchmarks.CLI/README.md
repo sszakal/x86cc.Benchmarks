@@ -1,21 +1,22 @@
 # Benchmark CLI
 
-Run specific benchmark categories:
+Run the full suite:
+```sh
+dotnet run --project x86cc.Benchmarks.CLI -c Release
+```
 
-`sudo dotnet run -c release --anyCategories 'Caching Systems' --join`
+Run specific benchmark categories (pass BenchmarkDotNet args after `--`):
+```sh
+dotnet run --project x86cc.Benchmarks.CLI -c Release -- --anyCategories "Caching Systems" --join
+dotnet run --project x86cc.Benchmarks.CLI -c Release -- --anyCategories "AspNetCore E2E" --join
+dotnet run --project x86cc.Benchmarks.CLI -c Release -- --anyCategories "Document DBs" --join
+dotnet run --project x86cc.Benchmarks.CLI -c Release -- --anyCategories "Entity Framework DBs" --join
+dotnet run --project x86cc.Benchmarks.CLI -c Release -- --anyCategories "Fake Data Generators" --join
+dotnet run --project x86cc.Benchmarks.CLI -c Release -- --anyCategories "IoC" --join
+dotnet run --project x86cc.Benchmarks.CLI -c Release -- --anyCategories "Mappers" --join
+dotnet run --project x86cc.Benchmarks.CLI -c Release -- --anyCategories "MessageBrokers" --join
+dotnet run --project x86cc.Benchmarks.CLI -c Release -- --anyCategories "Serialization" --join
+```
 
-`sudo dotnet run -c release --anyCategories 'AspNetCore E2E' --join`
-
-`sudo dotnet run -c release --anyCategories 'Document DBs' --join`
-
-`sudo dotnet run -c release --anyCategories 'Entity Framework DBs' --join`
-
-`sudo dotnet run -c release --anyCategories 'Fake Data Generators' --join`
-
-`sudo dotnet run -c release --anyCategories 'IoC' --join`
-
-`sudo dotnet run -c release --anyCategories 'Mappers' --join`
-
-`sudo dotnet run -c release --anyCategories 'MessageBrokers' --join`
-
-`sudo dotnet run -c release --anyCategories 'Serialization' --join`
+Notes:
+- Use `sudo` only if you need elevated permissions for system profiling.
