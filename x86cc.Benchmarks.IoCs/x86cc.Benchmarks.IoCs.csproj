@@ -8,24 +8,27 @@
 
     <ItemGroup>
         <PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
-        <PackageReference Include="Autofac" Version="9.0.0" />
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
-        <PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
+        <PackageReference Include="Autofac" Version="9.3.2" />
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="11.0.2" />
+        <PackageReference Include="Autofac.Extras.DynamicProxy" Version="8.1.0" />
         <PackageReference Include="Caliburn.Micro.Container" Version="1.5.2" />
         <PackageReference Include="Caliburn.Micro.Core" Version="5.0.258" />
         <PackageReference Include="Castle.Windsor" Version="6.0.0" />
         <PackageReference Include="DryIoc.dll" Version="5.4.3" />
         <PackageReference Include="DryIoc.Microsoft.DependencyInjection" Version="6.2.0" />
         <PackageReference Include="DryIocZero" Version="4.0.0" />
-        <PackageReference Include="Lamar" Version="15.0.1" />
+        <PackageReference Include="Lamar" Version="16.0.0" />
         <PackageReference Include="MicroResolver" Version="2.3.5" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.11" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-        <PackageReference Include="Spring.Aop" Version="3.0.3" />
-        <PackageReference Include="Spring.Core" Version="3.0.3" />
-        <PackageReference Include="Stashbox" Version="5.17.1" />
-        <PackageReference Include="Stashbox.Extensions.Dependencyinjection" Version="5.7.0" />
+        <PackageReference Include="Spring.Aop" Version="3.1.0" />
+        <PackageReference Include="Spring.Core" Version="3.1.0" />
+        <!-- Spring.Core 3.1.0 drags in ConfigurationManager 4.7.0, whose transitive
+             System.Drawing.Common 4.7.0 has a critical advisory (GHSA-rxg9-xrhp-64gj). -->
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.0" />
+        <PackageReference Include="Stashbox" Version="5.21.0" />
+        <PackageReference Include="Stashbox.Extensions.Dependencyinjection" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>

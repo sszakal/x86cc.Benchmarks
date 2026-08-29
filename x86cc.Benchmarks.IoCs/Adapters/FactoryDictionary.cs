@@ -1,4 +1,6 @@
-﻿namespace x86cc.Benchmarks.IoCs.Adapters
+using System.Diagnostics.CodeAnalysis;
+
+namespace x86cc.Benchmarks.IoCs.Adapters
 {
     /*
          Based on the implementation of Adam Horvath (CustomDictionary)
@@ -24,7 +26,7 @@
         public IocPerformanceDictionary() => Initialize();
         public int Count => nextfree;
 
-        public TValue this[TKey key]
+        public TValue? this[TKey key]
         {
             get
             {
@@ -100,6 +102,7 @@
             throw new NotImplementedException("Too large array");
         }
 
+        [MemberNotNull(nameof(buckets), nameof(entries))]
         private void Initialize()
         {
             this.buckets = new int[initialsize];
@@ -138,9 +141,9 @@
         private class IocPerformanceDictionaryEntry
         {
             public uint hashcode;
-            public TKey key;
+            public TKey key = null!;
             public int next;
-            public TValue value;
+            public TValue? value;
         }
     }
 }

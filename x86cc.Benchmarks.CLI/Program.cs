@@ -16,11 +16,3 @@ var summary = BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly)
      .With(typeof(CacheBenchmark).Assembly)
      .With(typeof(IoCBenchmark).Assembly)
      .Run(args);
-Console.WriteLine(summary.ToString());
- // var systemJsonBenchmarks = new SqlServerBenchmark();
- // systemJsonBenchmarks.ObjectCount = 1000;
- // await systemJsonBenchmarks.GlobalSetup();
- // await systemJsonBenchmarks.Insert();
- // await systemJsonBenchmarks.Update();
- // await systemJsonBenchmarks.Query();
- // Console.WriteLine(systemJsonBenchmarks.ObjectCount);

@@ -16,7 +16,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
 {
     public sealed class DryIocContainerAdapter : ContainerAdapterBase
     {
-        private IContainer container;
+        private IContainer container = null!;
         
         public override object Resolve(Type type) => this.container.Resolve(type);
 

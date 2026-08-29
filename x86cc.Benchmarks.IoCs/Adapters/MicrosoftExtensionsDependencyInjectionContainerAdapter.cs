@@ -9,17 +9,17 @@ namespace x86cc.Benchmarks.IoCs.Adapters
 {
     public sealed class MicrosoftExtensionsDependencyInjectionContainerAdapter : ContainerAdapterBase
     {
-        private IServiceCollection serviceCollection;
+        private IServiceCollection serviceCollection = null!;
 
-        private IServiceProvider serviceProvider;
+        private IServiceProvider serviceProvider = null!;
         
-        public override object Resolve(Type type) => this.serviceProvider.GetService(type);
+        public override object Resolve(Type type) => this.serviceProvider.GetService(type)!;
 
         public override void Dispose()
         {
             // Allow the container and everything it references to be garbage collected.
-            this.serviceCollection = null;
-            this.serviceProvider = null;
+            this.serviceCollection = null!;
+            this.serviceProvider = null!;
         }
 
         public override void Prepare()

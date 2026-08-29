@@ -10,7 +10,7 @@ namespace x86cc.Benchmarks.IoCs.Classes.Properties
     public class SubObjectC : ISubObjectC
     {
         [StashBoxAttr.Dependency]
-        public IServiceC ServiceC { get; set; }
+        public IServiceC ServiceC { get; set; } = null!;
 
         public void Verify(string containerName)
         {

@@ -13,7 +13,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
     {
         private readonly IocPerformanceDictionary<Type, Func<object>> container = new IocPerformanceDictionary<Type, Func<object>>();
 
-        public override object Resolve(Type type) => this.container[type]();
+        public override object Resolve(Type type) => this.container[type]!();
 
         public override void Dispose()
         {
@@ -197,7 +197,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
     {
         private readonly IocPerformanceDictionary<Type, Func<object>> container = new IocPerformanceDictionary<Type, Func<object>>();
 
-        private NoContainerAdapter parentAdapter = null;
+        private readonly NoContainerAdapter parentAdapter;
 
         public NoContainerChildContainerAdapter(NoContainerAdapter adapter)
         {
@@ -217,6 +217,6 @@ namespace x86cc.Benchmarks.IoCs.Adapters
             this.container[typeof(ICombined3)] = () => new ScopedCombined3(new ScopedTransient(), singleton);
         }
 
-        public object Resolve(Type resolveType) => this.container[resolveType]();
+        public object Resolve(Type resolveType) => this.container[resolveType]!();
     }
 }

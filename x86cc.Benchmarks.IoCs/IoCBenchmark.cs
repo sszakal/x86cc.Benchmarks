@@ -20,7 +20,7 @@ namespace x86cc.Benchmarks.IoCs;
 [Config(typeof(DefaultBenchmarkConfig))]
 public abstract class IoCBenchmark : IDisposable
 {
-    private IContainerAdapter container;
+    private IContainerAdapter container = null!;
     
     protected virtual bool SupportsInterception => false;
 

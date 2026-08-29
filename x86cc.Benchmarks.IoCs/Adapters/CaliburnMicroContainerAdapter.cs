@@ -9,14 +9,14 @@ namespace x86cc.Benchmarks.IoCs.Adapters
 {
     public sealed class CaliburnMicroContainerAdaptor : ContainerAdapterBase
     {
-        private SimpleContainer container;
+        private SimpleContainer container = null!;
         
         public override object Resolve(Type type) => this.container.GetInstance(type, null);
 
         public override void Dispose()
         {
             // Allow the container and everything it references to be garbage collected.
-            this.container = null;
+            this.container = null!;
         }
 
         public override void Prepare()

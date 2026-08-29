@@ -6,7 +6,7 @@ namespace x86cc.Benchmarks.IoCs.Interception
     // Extension methods for interceptor registration using Castle Dynamic Proxy.
     public static class DryIocInterceptionTools
     {
-        public static void Intercept<TService, TInterceptor>(this IRegistrator registrator, object serviceKey = null)
+        public static void Intercept<TService, TInterceptor>(this IRegistrator registrator, object? serviceKey = null)
             where TInterceptor : class, IInterceptor
         {
             var serviceType = typeof(TService);
@@ -33,9 +33,9 @@ namespace x86cc.Benchmarks.IoCs.Interception
 
         private static DefaultProxyBuilder ProxyBuilder
         {
-            get { return _proxyBuilder ?? (_proxyBuilder = new DefaultProxyBuilder()); }
+            get { return _proxyBuilder ??= new DefaultProxyBuilder(); }
         }
 
-        private static DefaultProxyBuilder _proxyBuilder;
+        private static DefaultProxyBuilder? _proxyBuilder;
     }
 }

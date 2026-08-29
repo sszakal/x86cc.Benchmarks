@@ -11,7 +11,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
 {
     public sealed class LamarContainerAdapter : ContainerAdapterBase
     {
-        private Container container;
+        private Container container = null!;
 
         public override object Resolve(Type type) => this.container.GetService(type);
 
@@ -24,7 +24,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
             }
 
             this.container.Dispose();
-            this.container = null;
+            this.container = null!;
         }
 
         public override void Prepare()

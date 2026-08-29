@@ -9,7 +9,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
 {
     public sealed class MicroResolverContainerAdapter : ContainerAdapterBase
     {
-        private ObjectResolver resolver;
+        private ObjectResolver resolver = null!;
 
         public override object Resolve(Type type)
         {

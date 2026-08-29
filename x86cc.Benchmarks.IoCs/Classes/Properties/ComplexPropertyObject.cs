@@ -33,23 +33,23 @@ namespace x86cc.Benchmarks.IoCs.Classes.Properties
         }
         
         [StashBoxAttr.Dependency]
-        public virtual IServiceA ServiceA { get; set; }
+        public virtual IServiceA ServiceA { get; set; } = null!;
 
         
         [StashBoxAttr.Dependency]
-        public virtual IServiceB ServiceB { get; set; }
+        public virtual IServiceB ServiceB { get; set; } = null!;
         
         [StashBoxAttr.Dependency]
-        public virtual IServiceC ServiceC { get; set; }
+        public virtual IServiceC ServiceC { get; set; } = null!;
         
         [StashBoxAttr.Dependency]
-        public virtual ISubObjectA SubObjectA { get; set; }
+        public virtual ISubObjectA SubObjectA { get; set; } = null!;
         
         [StashBoxAttr.Dependency]
-        public virtual ISubObjectB SubObjectB { get; set; }
+        public virtual ISubObjectB SubObjectB { get; set; } = null!;
 
         [StashBoxAttr.Dependency]
-        public virtual ISubObjectC SubObjectC { get; set; }
+        public virtual ISubObjectC SubObjectC { get; set; } = null!;
 
         public void Verify(string containerName)
         {
@@ -107,22 +107,22 @@ namespace x86cc.Benchmarks.IoCs.Classes.Properties
         }
         
         [StashBoxAttr.Dependency]
-        public virtual IServiceA ServiceA { get; set; }
+        public virtual IServiceA ServiceA { get; set; } = null!;
         
         [StashBoxAttr.Dependency]
-        public virtual IServiceB ServiceB { get; set; }
+        public virtual IServiceB ServiceB { get; set; } = null!;
         
         [StashBoxAttr.Dependency]
-        public virtual IServiceC ServiceC { get; set; }
+        public virtual IServiceC ServiceC { get; set; } = null!;
         
         [StashBoxAttr.Dependency]
-        public virtual ISubObjectA SubObjectA { get; set; }
+        public virtual ISubObjectA SubObjectA { get; set; } = null!;
         
         [StashBoxAttr.Dependency]
-        public virtual ISubObjectB SubObjectB { get; set; }
+        public virtual ISubObjectB SubObjectB { get; set; } = null!;
 
         [StashBoxAttr.Dependency]
-        public virtual ISubObjectC SubObjectC { get; set; }
+        public virtual ISubObjectC SubObjectC { get; set; } = null!;
 
         public void Verify(string containerName)
         {
@@ -180,22 +180,22 @@ namespace x86cc.Benchmarks.IoCs.Classes.Properties
         }
 
         [StashBoxAttr.Dependency]
-        public virtual IServiceA ServiceA { get; set; }
+        public virtual IServiceA ServiceA { get; set; } = null!;
         
         [StashBoxAttr.Dependency]
-        public virtual IServiceB ServiceB { get; set; }
+        public virtual IServiceB ServiceB { get; set; } = null!;
         
         [StashBoxAttr.Dependency]
-        public virtual IServiceC ServiceC { get; set; }
+        public virtual IServiceC ServiceC { get; set; } = null!;
 
         [StashBoxAttr.Dependency]
-        public virtual ISubObjectA SubObjectA { get; set; }
+        public virtual ISubObjectA SubObjectA { get; set; } = null!;
         
         [StashBoxAttr.Dependency]
-        public virtual ISubObjectB SubObjectB { get; set; }
+        public virtual ISubObjectB SubObjectB { get; set; } = null!;
         
         [StashBoxAttr.Dependency]
-        public virtual ISubObjectC SubObjectC { get; set; }
+        public virtual ISubObjectC SubObjectC { get; set; } = null!;
 
         public void Verify(string containerName)
         {

@@ -16,7 +16,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
 {
     public sealed class AutofacContainerAdapter : ContainerAdapterBase
     {
-        private IContainer container;
+        private IContainer container = null!;
 
         public override IChildContainerAdapter CreateChildContainerAdapter() => new AutofacChildContainerAdapter(this.container);
 
@@ -31,7 +31,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
             }
 
             this.container.Dispose();
-            this.container = null;
+            this.container = null!;
         }
 
         public override void Prepare()
@@ -202,7 +202,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
     public class AutofacChildContainerAdapter : IChildContainerAdapter
     {
         private readonly ILifetimeScope rootLifetimeScope;
-        private ILifetimeScope childLifetimeScope;
+        private ILifetimeScope childLifetimeScope = null!;
 
         public AutofacChildContainerAdapter(ILifetimeScope rootLifetimeScope)
         {

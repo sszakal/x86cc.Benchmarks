@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using MessagePack;
 using ProtoBuf;
 
@@ -23,16 +24,16 @@ public class CustomerOrderRoot
     [ProtoMember(5)]
     public DateTime UpdatedAt { get; set; }
     [Key(5)]
-    [ProtoMember(6)]
+    [ProtoMember(6, IsRequired = true)]
     public Customer Customer { get; set; } = new();
     [Key(6)]
-    [ProtoMember(7)]
+    [ProtoMember(7, IsRequired = true)]
     public Address ShippingAddress { get; set; } = new();
     [Key(7)]
-    [ProtoMember(8)]
+    [ProtoMember(8, IsRequired = true)]
     public Address BillingAddress { get; set; } = new();
     [Key(8)]
-    [ProtoMember(9)]
+    [ProtoMember(9, IsRequired = true)]
     public PaymentDetails Payment { get; set; } = new();
     [Key(9)]
     [ProtoMember(10)]
@@ -41,7 +42,7 @@ public class CustomerOrderRoot
     [ProtoMember(11)]
     public List<Discount> Discounts { get; set; } = [];
     [Key(11)]
-    [ProtoMember(12)]
+    [ProtoMember(12, IsRequired = true)]
     public AuditInfo Audit { get; set; } = new();
     [Key(12)]
     [ProtoMember(13)]
@@ -78,7 +79,7 @@ public class Customer
     [ProtoMember(5)]
     public string? Phone { get; set; }
     [Key(5)]
-    [ProtoMember(6)]
+    [ProtoMember(6, IsRequired = true)]
     public CustomerPreferences Preferences { get; set; } = new();
     [Key(6)]
     [ProtoMember(7)]
@@ -160,16 +161,16 @@ public class PaymentDetails
     [ProtoMember(3)]
     public string? MaskedAccount { get; set; }
     [Key(3)]
-    [ProtoMember(4)]
+    [ProtoMember(4, IsRequired = true)]
     public Money Total { get; set; } = new();
     [Key(4)]
-    [ProtoMember(5)]
+    [ProtoMember(5, IsRequired = true)]
     public Money Tax { get; set; } = new();
     [Key(5)]
-    [ProtoMember(6)]
+    [ProtoMember(6, IsRequired = true)]
     public Money Shipping { get; set; } = new();
     [Key(6)]
-    [ProtoMember(7)]
+    [ProtoMember(7, IsRequired = true)]
     public Money Discount { get; set; } = new();
 }
 
@@ -189,6 +190,7 @@ public class Money
     [ProtoMember(1)]
     public decimal Amount { get; set; }
     [Key(1)]
+    [DefaultValue("USD")]
     [ProtoMember(2)]
     public string Currency { get; set; } = "USD";
 }
@@ -201,19 +203,19 @@ public class OrderLine
     [ProtoMember(1)]
     public int LineNumber { get; set; }
     [Key(1)]
-    [ProtoMember(2)]
+    [ProtoMember(2, IsRequired = true)]
     public Product Product { get; set; } = new();
     [Key(2)]
     [ProtoMember(3)]
     public int Quantity { get; set; }
     [Key(3)]
-    [ProtoMember(4)]
+    [ProtoMember(4, IsRequired = true)]
     public Money LineTotal { get; set; } = new();
     [Key(4)]
     [ProtoMember(5)]
     public List<AttributeValue> Attributes { get; set; } = [];
     [Key(5)]
-    [ProtoMember(6)]
+    [ProtoMember(6, IsRequired = true)]
     public Fulfillment Fulfillment { get; set; } = new();
 }
 
@@ -231,7 +233,7 @@ public class Product
     [ProtoMember(3)]
     public string? Category { get; set; }
     [Key(3)]
-    [ProtoMember(4)]
+    [ProtoMember(4, IsRequired = true)]
     public Dimensions Dimensions { get; set; } = new();
     [Key(4)]
     [ProtoMember(5)]
@@ -291,7 +293,7 @@ public class Discount
     [ProtoMember(2)]
     public string? Description { get; set; }
     [Key(2)]
-    [ProtoMember(3)]
+    [ProtoMember(3, IsRequired = true)]
     public Money Amount { get; set; } = new();
 }
 

@@ -14,7 +14,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
 {
     public sealed class WindsorContainerAdapter : ContainerAdapterBase
     {
-        private WindsorContainer container;
+        private WindsorContainer container = null!;
 
         public override object Resolve(Type type) => this.container.Resolve(type);
 
@@ -27,7 +27,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
             }
 
             this.container.Dispose();
-            this.container = null;
+            this.container = null!;
         }
 
         public override IChildContainerAdapter CreateChildContainerAdapter()

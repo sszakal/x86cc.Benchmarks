@@ -15,7 +15,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
 {
     public sealed class StashboxContainerAdapter : ContainerAdapterBase
     {
-        private IStashboxContainer container;
+        private IStashboxContainer container = null!;
 
         private readonly Type proxyType1;
         private readonly Type proxyType2;

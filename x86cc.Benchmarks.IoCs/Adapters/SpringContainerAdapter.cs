@@ -4,7 +4,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
 {
     public sealed class SpringContainerAdapter : ContainerAdapterBase
     {
-        private IApplicationContext container;
+        private IApplicationContext container = null!;
 
         public override object Resolve(Type type) => this.container.GetObject(type.FullName);
 
@@ -18,7 +18,7 @@ namespace x86cc.Benchmarks.IoCs.Adapters
 
             this.container.Dispose();
             Spring.Context.Support.ContextRegistry.Clear();
-            this.container = null;
+            this.container = null!;
         }
 
         public override void PrepareBasic()
